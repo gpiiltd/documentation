@@ -1,0 +1,1197 @@
+basePath: /api/v1
+definitions:
+  controller.BusinessProfile:
+    properties:
+      business_address:
+        type: string
+      business_description:
+        type: string
+      business_id:
+        type: string
+      business_name:
+        type: string
+      business_type:
+        type: string
+      cac_registration_number:
+        type: string
+      core_business_functions:
+        type: string
+      core_business_training:
+        type: string
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      email:
+        type: string
+      id:
+        type: integer
+      industry:
+        type: string
+      operational_support:
+        type: string
+      updated_at:
+        type: string
+      website:
+        type: string
+      years_of_operation:
+        type: integer
+    type: object
+  controller.BusinessRegistration:
+    properties:
+      business_address:
+        type: string
+      business_description:
+        type: string
+      business_name:
+        type: string
+      business_type:
+        type: string
+      cac_registration_number:
+        type: string
+      core_business_functions:
+        type: string
+      core_business_training:
+        type: string
+      email:
+        type: string
+      industry:
+        type: string
+      operational_support:
+        type: string
+      website:
+        type: string
+      years_of_operation:
+        type: integer
+    type: object
+  controller.BusinessResponse:
+    properties:
+      business_address:
+        type: string
+      business_description:
+        type: string
+      business_id:
+        type: string
+      business_name:
+        type: string
+      business_type:
+        type: string
+      cac_registration_number:
+        type: string
+      core_business_functions:
+        type: string
+      core_business_training:
+        type: string
+      email:
+        type: string
+      industry:
+        type: string
+      operational_support:
+        type: string
+      products:
+        items:
+          $ref: '#/definitions/controller.ProductResponseObject'
+        type: array
+      website:
+        type: string
+      years_of_operation:
+        type: integer
+    type: object
+  controller.ChangePassword:
+    properties:
+      new_password:
+        type: string
+      old_password:
+        type: string
+    type: object
+  controller.CreateOrder:
+    properties:
+      country:
+        type: string
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      delivery_instructions:
+        type: string
+      id:
+        type: integer
+      order_id:
+        type: string
+      order_quantity:
+        type: integer
+      order_status:
+        type: string
+      product_id:
+        type: integer
+      state:
+        type: string
+      street:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  controller.DeliveryAddress:
+    properties:
+      country:
+        type: string
+      state:
+        type: string
+      street:
+        type: string
+    type: object
+  controller.Industries:
+    properties:
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      id:
+        type: integer
+      industry:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  controller.LoginData:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    type: object
+  controller.LoginObject:
+    properties:
+      token_string:
+        type: string
+      user_data:
+        $ref: '#/definitions/controller.UserData'
+      user_roles:
+        items:
+          $ref: '#/definitions/controller.UserRole'
+        type: array
+    type: object
+  controller.OrderResponseBody:
+    properties:
+      address:
+        $ref: '#/definitions/controller.DeliveryAddress'
+      order_quantity:
+        type: integer
+      product:
+        $ref: '#/definitions/controller.ProductResponseObject'
+      user:
+        $ref: '#/definitions/controller.UserData'
+    type: object
+  controller.ProductDiscount:
+    properties:
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      discountPercentage:
+        type: number
+      id:
+        type: integer
+      product_id:
+        type: integer
+      product_name:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  controller.ProductImage:
+    properties:
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      id:
+        type: integer
+      image_url:
+        type: string
+      product_id:
+        type: integer
+      updated_at:
+        type: string
+    type: object
+  controller.ProductResponseObject:
+    properties:
+      discount:
+        $ref: '#/definitions/controller.ProductDiscount'
+      industry:
+        type: string
+      item_left:
+        type: integer
+      price:
+        type: string
+      product_description:
+        type: string
+      product_id:
+        type: string
+      product_images:
+        items:
+          $ref: '#/definitions/controller.ProductImage'
+        type: array
+      product_name:
+        type: string
+      ratings:
+        items:
+          $ref: '#/definitions/controller.Rating'
+        type: array
+      section:
+        type: string
+      tags:
+        items:
+          $ref: '#/definitions/controller.Tags'
+        type: array
+    type: object
+  controller.Products:
+    properties:
+      business_id:
+        type: string
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      id:
+        type: integer
+      industry:
+        type: string
+      photo:
+        type: string
+      price:
+        type: string
+      product_description:
+        type: string
+      product_id:
+        type: string
+      product_name:
+        type: string
+      stock_quantity:
+        type: integer
+      tags:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  controller.Rating:
+    properties:
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      id:
+        type: integer
+      product_id:
+        type: string
+      product_name:
+        type: string
+      updated_at:
+        type: string
+      user_comments:
+        type: string
+      user_name:
+        type: string
+      user_rating:
+        type: integer
+    type: object
+  controller.RegistrationData:
+    properties:
+      email:
+        type: string
+      full_name:
+        type: string
+      password:
+        type: string
+    type: object
+  controller.RegistrationObject:
+    properties:
+      token_string:
+        type: string
+      user_data:
+        $ref: '#/definitions/controller.UserData'
+      user_role:
+        $ref: '#/definitions/controller.UserRole'
+    type: object
+  controller.ResponseObject:
+    properties:
+      body:
+        type: object
+      code:
+        type: integer
+      message:
+        type: string
+    type: object
+  controller.SocialMedia:
+    properties:
+      facebook:
+        type: string
+      instagram:
+        type: string
+      twitter:
+        type: string
+    type: object
+  controller.SubCategoryList:
+    properties:
+      category:
+        type: string
+      subcategories:
+        items:
+          type: object
+        type: array
+    type: object
+  controller.Tags:
+    properties:
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      id:
+        type: integer
+      tag:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  controller.UserData:
+    properties:
+      address:
+        type: string
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      description:
+        type: string
+      display_picture:
+        type: string
+      email:
+        type: string
+      full_name:
+        type: string
+      id:
+        type: integer
+      phone_number:
+        type: string
+      socialMedia:
+        $ref: '#/definitions/controller.SocialMedia'
+      updated_at:
+        type: string
+      uuid:
+        type: string
+    type: object
+  controller.UserRole:
+    properties:
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      id:
+        type: integer
+      role:
+        type: string
+      role_code:
+        type: string
+      updated_at:
+        type: string
+      uuid:
+        type: string
+    type: object
+  controller.VerifyRegistration:
+    properties:
+      email:
+        type: string
+      verification_code:
+        type: string
+    type: object
+  controller.VerifyToken:
+    properties:
+      token_string:
+        type: string
+      validity:
+        type: boolean
+    type: object
+host: localhost:8112
+info:
+  contact:
+    email: endy.apinageri@my-gpi.io
+    name: Endy Apinageri
+    url: https://www.endyapina.com
+  description: This is the official data model for BARAFIRI API documentation.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://my-gpi.io/terms/
+  title: Barafiri Backend API documentation
+  version: "1.0"
+paths:
+  /apicore/authentication/login:
+    post:
+      consumes:
+      - application/json
+      description: Send user data to the main authentication login endpoint endpoint.
+      parameters:
+      - description: The User Login data
+        in: body
+        name: LoginData
+        required: true
+        schema:
+          $ref: '#/definitions/controller.LoginData'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: User Registration default data
+          schema:
+            $ref: '#/definitions/controller.LoginObject'
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to send user data for login
+      tags:
+      - Authorization
+  /apicore/authentication/pasword/change:
+    post:
+      consumes:
+      - application/json
+      description: When a user decides to change password, frontend call api with
+        old and new password
+      parameters:
+      - description: The new password changes
+        in: body
+        name: ChangePassword
+        required: true
+        schema:
+          $ref: '#/definitions/controller.ChangePassword'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Check email for password mail and link
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Change password updates a user password with a current one
+      tags:
+      - Authorization
+  /apicore/authentication/pasword/forget:
+    post:
+      consumes:
+      - application/json
+      description: When a user forgets password, forgetPassword endpoint handles sending
+        a new link for password recovery
+      parameters:
+      - description: The user email
+        in: body
+        name: string
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Check email for password mail and link
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to request for new user password
+      tags:
+      - Authorization
+  /apicore/authentication/registration:
+    post:
+      consumes:
+      - application/json
+      description: Send user data to the main authentication endpoint.
+      parameters:
+      - description: The User Registration data
+        in: body
+        name: RegistrationData
+        required: true
+        schema:
+          $ref: '#/definitions/controller.RegistrationData'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: User Registration default data
+          schema:
+            $ref: '#/definitions/controller.UserData'
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to send user data for registration
+      tags:
+      - Authorization
+  /apicore/authentication/registration/verify:
+    post:
+      consumes:
+      - application/json
+      description: Send user data and verification code to verify validity of verification.
+      parameters:
+      - description: The User Registration data and code
+        in: body
+        name: RegistrationData
+        required: true
+        schema:
+          $ref: '#/definitions/controller.VerifyRegistration'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: User Registration default data
+          schema:
+            $ref: '#/definitions/controller.RegistrationObject'
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to verify user registration link
+      tags:
+      - Authorization
+  /apicore/token/reset:
+    get:
+      consumes:
+      - application/json
+      description: Pass token in the Authorization header. Verify the token and send
+        a new one with updated credentials
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Check validity
+          schema:
+            $ref: '#/definitions/controller.VerifyToken'
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Reset token renews old token string
+      tags:
+      - Authorization
+  /apicore/token/user:
+    get:
+      consumes:
+      - application/json
+      description: Pass token in the Authorization header. Verify token checks if
+        the token is verified and send the authenticated user application related
+        data
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Check validity
+          schema:
+            $ref: '#/definitions/controller.LoginObject'
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Checks if an authenticated user token is valid, and send user data
+        of authenticated user
+      tags:
+      - Authorization
+  /apicore/token/verify:
+    get:
+      consumes:
+      - application/json
+      description: Pass token in the Authorization header. Verify token checks if
+        the token is verified
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Check validity
+          schema:
+            $ref: '#/definitions/controller.VerifyToken'
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Checks if an authenticated user token is valid.
+      tags:
+      - Authorization
+  /apicore/user/:
+    patch:
+      consumes:
+      - application/json
+      description: Update user data. This happens when a user wants to update user
+        information
+      parameters:
+      - description: Update user data json object
+        in: body
+        name: UserData
+        required: true
+        schema:
+          $ref: '#/definitions/controller.UserData'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: User related data
+          schema:
+            $ref: '#/definitions/controller.UserData'
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Update user information
+      tags:
+      - Authorization
+  /apicore/user/{uid}:
+    get:
+      consumes:
+      - application/json
+      description: Get user uid from url and retrieve user data with the uid string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: User related data
+          schema:
+            $ref: '#/definitions/controller.UserData'
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Retrieve user data from user id
+      tags:
+      - Authorization
+  /business/:
+    delete:
+      consumes:
+      - application/json
+      description: Perform Delete endpoint for Business Registration
+      parameters:
+      - description: The Business Registration Data
+        in: body
+        name: BusinessProfile
+        required: true
+        schema:
+          $ref: '#/definitions/controller.BusinessProfile'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 'Success data '
+          schema:
+            $ref: '#/definitions/controller.BusinessProfile'
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to delete a user business information
+      tags:
+      - Business
+    post:
+      consumes:
+      - application/json
+      description: Send user data to the main authentication endpoint.
+      parameters:
+      - description: The Business Registration Data
+        in: body
+        name: BusinessRegistration
+        required: true
+        schema:
+          $ref: '#/definitions/controller.BusinessRegistration'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 'Success data '
+          schema:
+            $ref: '#/definitions/controller.BusinessProfile'
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to send user data for registration
+      tags:
+      - Business
+  /business/{buid}:
+    get:
+      consumes:
+      - application/json
+      description: Get an array of all business and business data by business unique
+        ids
+      parameters:
+      - description: The Business unique id string
+        in: body
+        name: businessid
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 'Success data '
+          schema:
+            $ref: '#/definitions/controller.BusinessResponse'
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to get business information by id
+      tags:
+      - Business
+  /business/{buid}/order/{orderid}:
+    get:
+      consumes:
+      - application/json
+      description: Get order for a particular business
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success data. Check response body for data containing business
+            data and all product array
+          schema:
+            $ref: '#/definitions/controller.OrderResponseBody'
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to get a business order
+      tags:
+      - Sales
+  /business/{buid}/order/{orderid}/cancel:
+    patch:
+      consumes:
+      - application/json
+      description: Businesses can reject or cancel a user order of their endpoint.
+        Frontend can call this API for that purpose
+      parameters:
+      - description: The Product order data
+        in: body
+        name: CreateOrder
+        required: true
+        schema:
+          $ref: '#/definitions/controller.CreateOrder'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Order response body
+          schema:
+            $ref: '#/definitions/controller.OrderResponseBody'
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to cancel or reject a user order
+      tags:
+      - Sales
+  /business/{buid}/order/all:
+    get:
+      consumes:
+      - application/json
+      description: Get orders for a particular business
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success data. Check response body for data containing business
+            data and all product array
+          schema:
+            items:
+              $ref: '#/definitions/controller.OrderResponseBody'
+            type: array
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to get all business orders
+      tags:
+      - Sales
+  /business/all:
+    get:
+      consumes:
+      - application/json
+      description: Get an array of all business and business data
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 'Success data '
+          schema:
+            items:
+              $ref: '#/definitions/controller.BusinessResponse'
+            type: array
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to get all businesses on BARAFIRI
+      tags:
+      - Business
+  /business/update:
+    post:
+      consumes:
+      - application/json
+      description: Perform Update endpoint for Business Registration
+      parameters:
+      - description: The Business Registration Data
+        in: body
+        name: BusinessProfile
+        required: true
+        schema:
+          $ref: '#/definitions/controller.BusinessProfile'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 'Success data '
+          schema:
+            $ref: '#/definitions/controller.BusinessProfile'
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to update user business data
+      tags:
+      - Business
+  /products/store/:
+    delete:
+      consumes:
+      - application/json
+      description: Delete product information of the store
+      parameters:
+      - description: The Product data to be stored
+        in: body
+        name: Products
+        required: true
+        schema:
+          $ref: '#/definitions/controller.Products'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: The product data
+          schema:
+            $ref: '#/definitions/controller.Products'
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Delete product information of the store
+      tags:
+      - Product Store
+    patch:
+      consumes:
+      - application/json
+      description: Update product store edits some store data
+      parameters:
+      - description: The Product data to be stored
+        in: body
+        name: Products
+        required: true
+        schema:
+          $ref: '#/definitions/controller.Products'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: The product data
+          schema:
+            $ref: '#/definitions/controller.Products'
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Update product information of the store
+      tags:
+      - Product Store
+    post:
+      consumes:
+      - application/json
+      description: Add products information to store. This makes the product visible
+        to all users
+      parameters:
+      - description: The Product data to be stored
+        in: body
+        name: Products
+        required: true
+        schema:
+          $ref: '#/definitions/controller.Products'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: The product data
+          schema:
+            $ref: '#/definitions/controller.Products'
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Add product to store create new product appended to the store
+      tags:
+      - Product Store
+  /products/store/{buid}:
+    get:
+      consumes:
+      - application/json
+      description: Get all product information about a business from business unique
+        id
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: The product data
+          schema:
+            $ref: '#/definitions/controller.UserData'
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: This endpoint retrieves all product data belonging to the business
+      tags:
+      - Product Store
+  /public/business/products/all:
+    get:
+      consumes:
+      - application/json
+      description: Get business information and products
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success data. Check response body for data containing business
+            data and all product array
+          schema:
+            items:
+              $ref: '#/definitions/controller.BusinessResponse'
+            type: array
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to get business information based on business unique id
+      tags:
+      - Public API
+  /public/product/{puid}:
+    get:
+      consumes:
+      - application/json
+      description: Get product by product id
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success data. Check response body for data
+          schema:
+            items:
+              $ref: '#/definitions/controller.ProductResponseObject'
+            type: array
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to get all product information on BARAFIRI
+      tags:
+      - Public API
+  /public/product/all:
+    get:
+      consumes:
+      - application/json
+      description: Get an array of all business and business data
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success data. Check response body for data
+          schema:
+            items:
+              $ref: '#/definitions/controller.ProductResponseObject'
+            type: array
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to get all product information on BARAFIRI
+      tags:
+      - Public API
+  /user/order/:
+    post:
+      consumes:
+      - application/json
+      description: Send create order data to order for a new product.
+      parameters:
+      - description: The Product order data
+        in: body
+        name: CreateOrder
+        required: true
+        schema:
+          $ref: '#/definitions/controller.CreateOrder'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Order response body
+          schema:
+            $ref: '#/definitions/controller.OrderResponseBody'
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to create a new user order
+      tags:
+      - Sales
+  /user/order/{orderid}:
+    get:
+      consumes:
+      - application/json
+      description: Get order data
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success data. Check response body for data containing business
+            data and all product array
+          schema:
+            $ref: '#/definitions/controller.OrderResponseBody'
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to get an order for an individual user
+      tags:
+      - Sales
+  /user/order/all:
+    get:
+      consumes:
+      - application/json
+      description: Get business information and products
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success data. Check response body for data containing business
+            data and all product array
+          schema:
+            items:
+              $ref: '#/definitions/controller.OrderResponseBody'
+            type: array
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to get all orders of an individual user
+      tags:
+      - Sales
+  /user/order/cancel:
+    patch:
+      consumes:
+      - application/json
+      description: Send create order data to order for a new product.
+      parameters:
+      - description: The Product order data
+        in: body
+        name: CreateOrder
+        required: true
+        schema:
+          $ref: '#/definitions/controller.CreateOrder'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Order response body
+          schema:
+            $ref: '#/definitions/controller.OrderResponseBody'
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to create a new user order
+      tags:
+      - Sales
+  /util/category/:
+    get:
+      consumes:
+      - application/json
+      description: Get the list of all Categories
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Category list and sub category
+          schema:
+            $ref: '#/definitions/controller.SubCategoryList'
+        "400":
+          description: Category list
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to get the list of all categories on the database
+      tags:
+      - Public API
+  /util/industry/:
+    get:
+      consumes:
+      - application/json
+      description: Get the list of all industries
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Category list and sub category
+          schema:
+            items:
+              $ref: '#/definitions/controller.Industries'
+            type: array
+        "400":
+          description: Category list
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to get the list of all industries on the database
+      tags:
+      - Public API
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+  BasicAuth:
+    type: basic
+  OAuth2AccessCode:
+    authorizationUrl: https://example.com/oauth/authorize
+    flow: accessCode
+    scopes:
+      admin: ' Grants read and write access to administrative information'
+    tokenUrl: https://example.com/oauth/token
+    type: oauth2
+  OAuth2Application:
+    flow: application
+    scopes:
+      admin: ' Grants read and write access to administrative information'
+      write: ' Grants write access'
+    tokenUrl: https://example.com/oauth/token
+    type: oauth2
+  OAuth2Implicit:
+    authorizationUrl: https://example.com/oauth/authorize
+    flow: implicit
+    scopes:
+      admin: ' Grants read and write access to administrative information'
+      write: ' Grants write access'
+    type: oauth2
+  OAuth2Password:
+    flow: password
+    scopes:
+      admin: ' Grants read and write access to administrative information'
+      read: ' Grants read access'
+      write: ' Grants write access'
+    tokenUrl: https://example.com/oauth/token
+    type: oauth2
+swagger: "2.0"
+x-extension-openapi:
+  example: value on a json format
