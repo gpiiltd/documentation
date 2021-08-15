@@ -16,6 +16,12 @@ import (
 // @title Barafiri Backend API documentation
 // @version 1.0
 // @description This is the official data model for BARAFIRI API documentation.
+// @description Barafiri documentation port: 8112
+// @description apicore port: 7002
+// @description mailer port: 7006
+// @description sales service: 7003
+// @description public endpoints: 7005 (This includes CART, PUBLIC API, PUBLIC SEARCH)
+// @description products service: 7007
 // @termsOfService http://my-gpi.io/terms/
 
 // @contact.name Endy Apinageri

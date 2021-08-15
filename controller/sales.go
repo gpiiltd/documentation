@@ -12,7 +12,7 @@ import (
 // @Tags Sales
 // @Accept json
 // @Produce json
-// @Param CreateOrder body CreateOrder true  "The Product order data"
+// @Param CreateProductOrder body CreateProductOrder true  "The Product order data"
 // @Success 200 {object} OrderResponseBody "Order response body"
 // @Failure 400 {object} ResponseObject "API response object"
 // @Router /user/order/ [post]

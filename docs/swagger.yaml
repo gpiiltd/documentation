@@ -32,6 +32,8 @@ definitions:
         type: string
       updated_at:
         type: string
+      user_id:
+        type: string
       website:
         type: string
       years_of_operation:
@@ -97,6 +99,32 @@ definitions:
       years_of_operation:
         type: integer
     type: object
+  controller.BusinessResponseObject:
+    properties:
+      business:
+        $ref: '#/definitions/controller.BusinessProfile'
+      products:
+        items:
+          $ref: '#/definitions/controller.ProductResponseObject'
+        type: array
+    type: object
+  controller.Cart:
+    properties:
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      id:
+        type: integer
+      product_id:
+        type: string
+      quantity:
+        type: integer
+      updated_at:
+        type: string
+      user_id:
+        type: string
+    type: object
   controller.ChangePassword:
     properties:
       new_password:
@@ -132,6 +160,35 @@ definitions:
         type: string
       user_id:
         type: integer
+    type: object
+  controller.CreateProductOrder:
+    properties:
+      address:
+        type: string
+      created_at:
+        type: string
+      custom_address:
+        type: boolean
+      deleted_at:
+        type: string
+      id:
+        type: integer
+      order_id:
+        type: string
+      order_status:
+        type: string
+      payment_id:
+        type: string
+      products_order_details:
+        items:
+          $ref: '#/definitions/controller.ProductQuantity'
+        type: array
+      tracking_number:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: string
     type: object
   controller.DeliveryAddress:
     properties:
@@ -184,6 +241,29 @@ definitions:
       user:
         $ref: '#/definitions/controller.UserData'
     type: object
+  controller.Pay:
+    properties:
+      business_id:
+        type: string
+      cost:
+        type: string
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      id:
+        type: integer
+      order_id:
+        type: string
+      payment_id:
+        type: string
+      product_id:
+        type: string
+      transaction_id:
+        type: string
+      updated_at:
+        type: string
+    type: object
   controller.ProductDiscount:
     properties:
       created_at:
@@ -215,6 +295,13 @@ definitions:
         type: integer
       updated_at:
         type: string
+    type: object
+  controller.ProductQuantity:
+    properties:
+      product_id:
+        type: string
+      quantity:
+        type: integer
     type: object
   controller.ProductResponseObject:
     properties:
@@ -324,6 +411,23 @@ definitions:
       message:
         type: string
     type: object
+  controller.SearchResult:
+    properties:
+      business_array:
+        items:
+          $ref: '#/definitions/controller.BusinessResponseObject'
+        type: array
+      business_match:
+        type: boolean
+      no_match:
+        type: boolean
+      product_match:
+        type: boolean
+      products:
+        items:
+          $ref: '#/definitions/controller.ProductResponseObject'
+        type: array
+    type: object
   controller.SocialMedia:
     properties:
       facebook:
@@ -419,7 +523,14 @@ info:
     email: endy.apinageri@my-gpi.io
     name: Endy Apinageri
     url: https://www.endyapina.com
-  description: This is the official data model for BARAFIRI API documentation.
+  description: |-
+    This is the official data model for BARAFIRI API documentation.
+    Barafiri documentation port: 8112
+    apicore port: 7002
+    mailer port: 7006
+    sales service: 7003
+    public endpoints: 7005 (This includes CART, PUBLIC API, PUBLIC SEARCH)
+    products service: 7007
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
@@ -559,6 +670,131 @@ paths:
       summary: Endpoint to verify user registration link
       tags:
       - Authorization
+  /apicore/business/:
+    delete:
+      consumes:
+      - application/json
+      description: Perform Delete endpoint for Business Registration
+      parameters:
+      - description: The Business Registration Data
+        in: body
+        name: BusinessProfile
+        required: true
+        schema:
+          $ref: '#/definitions/controller.BusinessProfile'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 'Success data '
+          schema:
+            $ref: '#/definitions/controller.BusinessProfile'
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to delete a user business information
+      tags:
+      - APICORE Business
+    post:
+      consumes:
+      - application/json
+      description: Send user data to the main authentication endpoint.
+      parameters:
+      - description: The Business Registration Data
+        in: body
+        name: BusinessRegistration
+        required: true
+        schema:
+          $ref: '#/definitions/controller.BusinessRegistration'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 'Success data '
+          schema:
+            $ref: '#/definitions/controller.BusinessProfile'
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to send user data for registration
+      tags:
+      - APICORE Business
+  /apicore/business/{buid}:
+    get:
+      consumes:
+      - application/json
+      description: Get an array of all business and business data by business unique
+        ids
+      parameters:
+      - description: The Business unique id string
+        in: body
+        name: businessid
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 'Success data '
+          schema:
+            $ref: '#/definitions/controller.BusinessResponse'
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to get business information by id
+      tags:
+      - APICORE Business
+  /apicore/business/all:
+    get:
+      consumes:
+      - application/json
+      description: Get an array of all business and business data
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 'Success data '
+          schema:
+            items:
+              $ref: '#/definitions/controller.BusinessResponse'
+            type: array
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to get all businesses on BARAFIRI
+      tags:
+      - APICORE Business
+  /apicore/business/update:
+    post:
+      consumes:
+      - application/json
+      description: Perform Update endpoint for Business Registration
+      parameters:
+      - description: The Business Registration Data
+        in: body
+        name: BusinessProfile
+        required: true
+        schema:
+          $ref: '#/definitions/controller.BusinessProfile'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 'Success data '
+          schema:
+            $ref: '#/definitions/controller.BusinessProfile'
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to update user business data
+      tags:
+      - APICORE Business
   /apicore/token/reset:
     get:
       consumes:
@@ -667,84 +903,6 @@ paths:
       summary: Retrieve user data from user id
       tags:
       - Authorization
-  /business/:
-    delete:
-      consumes:
-      - application/json
-      description: Perform Delete endpoint for Business Registration
-      parameters:
-      - description: The Business Registration Data
-        in: body
-        name: BusinessProfile
-        required: true
-        schema:
-          $ref: '#/definitions/controller.BusinessProfile'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: 'Success data '
-          schema:
-            $ref: '#/definitions/controller.BusinessProfile'
-        "400":
-          description: API response object
-          schema:
-            $ref: '#/definitions/controller.ResponseObject'
-      summary: Endpoint to delete a user business information
-      tags:
-      - Business
-    post:
-      consumes:
-      - application/json
-      description: Send user data to the main authentication endpoint.
-      parameters:
-      - description: The Business Registration Data
-        in: body
-        name: BusinessRegistration
-        required: true
-        schema:
-          $ref: '#/definitions/controller.BusinessRegistration'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: 'Success data '
-          schema:
-            $ref: '#/definitions/controller.BusinessProfile'
-        "400":
-          description: API response object
-          schema:
-            $ref: '#/definitions/controller.ResponseObject'
-      summary: Endpoint to send user data for registration
-      tags:
-      - Business
-  /business/{buid}:
-    get:
-      consumes:
-      - application/json
-      description: Get an array of all business and business data by business unique
-        ids
-      parameters:
-      - description: The Business unique id string
-        in: body
-        name: businessid
-        required: true
-        schema:
-          type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: 'Success data '
-          schema:
-            $ref: '#/definitions/controller.BusinessResponse'
-        "400":
-          description: API response object
-          schema:
-            $ref: '#/definitions/controller.ResponseObject'
-      summary: Endpoint to get business information by id
-      tags:
-      - Business
   /business/{buid}/order/{orderid}:
     get:
       consumes:
@@ -814,11 +972,46 @@ paths:
       summary: Endpoint to get all business orders
       tags:
       - Sales
-  /business/all:
-    get:
+  /cart/add:
+    post:
       consumes:
       - application/json
-      description: Get an array of all business and business data
+      description: Add new product information to cart system
+      parameters:
+      - description: The product data in the cart, as well as the user information
+        in: body
+        name: Cart
+        required: true
+        schema:
+          $ref: '#/definitions/controller.Cart'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success cart data
+          schema:
+            items:
+              $ref: '#/definitions/controller.Cart'
+            type: array
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to add new product to user cart information
+      tags:
+      - User Cart
+  /cart/empty:
+    delete:
+      consumes:
+      - application/json
+      description: This is used when a user wants to empty user cart
+      parameters:
+      - description: The product data in the cart, as well as the user information
+        in: body
+        name: Cart
+        required: true
+        schema:
+          $ref: '#/definitions/controller.Cart'
       produces:
       - application/json
       responses:
@@ -826,41 +1019,72 @@ paths:
           description: 'Success data '
           schema:
             items:
-              $ref: '#/definitions/controller.BusinessResponse'
+              $ref: '#/definitions/controller.Cart'
             type: array
         "400":
           description: API response object
           schema:
             $ref: '#/definitions/controller.ResponseObject'
-      summary: Endpoint to get all businesses on BARAFIRI
+      summary: Endpoint to remove all product from cart item
       tags:
-      - Business
-  /business/update:
-    post:
+      - User Cart
+  /cart/remove/{productid}:
+    delete:
       consumes:
       - application/json
-      description: Perform Update endpoint for Business Registration
+      description: This is used when a user wants to remove a particular data from
+        cart
       parameters:
-      - description: The Business Registration Data
+      - description: The product data in the cart, as well as the user information
         in: body
-        name: BusinessProfile
+        name: Cart
         required: true
         schema:
-          $ref: '#/definitions/controller.BusinessProfile'
+          $ref: '#/definitions/controller.Cart'
       produces:
       - application/json
       responses:
         "200":
           description: 'Success data '
           schema:
-            $ref: '#/definitions/controller.BusinessProfile'
+            items:
+              $ref: '#/definitions/controller.Cart'
+            type: array
         "400":
           description: API response object
           schema:
             $ref: '#/definitions/controller.ResponseObject'
-      summary: Endpoint to update user business data
+      summary: Endpoint to remove product from cart item
       tags:
-      - Business
+      - User Cart
+  /payments/transaction/pay:
+    post:
+      consumes:
+      - application/json
+      description: Endpoint to create new transaction for businesses.
+      parameters:
+      - description: The payment data
+        in: body
+        name: Pay
+        required: true
+        schema:
+          $ref: '#/definitions/controller.Pay'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success data. Check response body for data
+          schema:
+            items:
+              $ref: '#/definitions/controller.ProductResponseObject'
+            type: array
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to create new transaction for businesses
+      tags:
+      - Public API
   /products/store/:
     delete:
       consumes:
@@ -1022,6 +1246,105 @@ paths:
       summary: Endpoint to get all product information on BARAFIRI
       tags:
       - Public API
+  /search/{text}:
+    get:
+      consumes:
+      - application/json
+      description: Search the system for products and data match
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 'Success search result '
+          schema:
+            $ref: '#/definitions/controller.SearchResult'
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to search the system database for text matches in products
+        and services
+      tags:
+      - Public Search
+  /search/products/{text}:
+    get:
+      consumes:
+      - application/json
+      description: Search the system for products match
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success search result from the procuts section
+          schema:
+            $ref: '#/definitions/controller.SearchResult'
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to search the system database for text matches in products
+      tags:
+      - Public Search
+  /search/products/category/{text}:
+    get:
+      consumes:
+      - application/json
+      description: Search the system for products match and category match
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success search result from the procuts section
+          schema:
+            $ref: '#/definitions/controller.SearchResult'
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to search the system database for text matches in products
+        and category
+      tags:
+      - Public Search
+  /search/products/industry/{text}:
+    get:
+      consumes:
+      - application/json
+      description: Search the system for products match and industry match
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success search result from the procuts section
+          schema:
+            $ref: '#/definitions/controller.SearchResult'
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to search the system database for text matches in products
+        and industry
+      tags:
+      - Public Search
+  /search/products/price/{minprice}/{maxprice}:
+    get:
+      consumes:
+      - application/json
+      description: Search the system for products match and price range match
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success search result from the procuts section
+          schema:
+            $ref: '#/definitions/controller.SearchResult'
+        "400":
+          description: API response object
+          schema:
+            $ref: '#/definitions/controller.ResponseObject'
+      summary: Endpoint to search the system database for text matches in products
+        and match in prices
+      tags:
+      - Public Search
   /user/order/:
     post:
       consumes:
@@ -1030,10 +1353,10 @@ paths:
       parameters:
       - description: The Product order data
         in: body
-        name: CreateOrder
+        name: CreateProductOrder
         required: true
         schema:
-          $ref: '#/definitions/controller.CreateOrder'
+          $ref: '#/definitions/controller.CreateProductOrder'
       produces:
       - application/json
       responses:

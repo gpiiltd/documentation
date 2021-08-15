@@ -125,6 +125,7 @@ type BusinessRegistration struct {
 //BusinessProfile holds the data structure for enterprise users
 type BusinessProfile struct {
 	FiriModel
+	UserID                string `json:"user_id"`
 	Email                 string `gorm:"type:varchar(100)" json:"email"`
 	BusinessName          string `gorm:"type:varchar(100)" json:"business_name"`
 	BusinessID            string `gorm:"type:varchar(100)" json:"business_id"`
@@ -300,6 +301,30 @@ type BusinessResponseObject struct {
 	Products []ProductResponseObject `json:"products"`
 }
 
+type ProductQuantity struct {
+	ProductID string `json:"product_id"`
+	Quantity  int    `json:"quantity"`
+}
+
+type CreateProductOrder struct {
+	FiriModel
+	ProductOrderDetails []ProductQuantity `gorm:"-" json:"products_order_details"`
+	UserID              string            `json:"user_id"`
+	OrderStatus         string            `json:"order_status"`
+	OrderID             string            `json:"order_id"`
+	OrderTrackingNumber string            `json:"tracking_number"`
+	PaymentReferenceID  string            `json:"payment_id"`
+	CustomAddress       bool              `json:"custom_address"`
+	Address             string            `json:"address"`
+}
+
+type OrderDetails struct {
+	FiriModel
+	OrderID   string `json:"order_id"`
+	ProductID string `json:"product_id"`
+	Quantity  int    `json:"quantity"`
+}
+
 //CreateOrder holds the data for creating a new order order
 type CreateOrder struct {
 	FiriModel
@@ -331,4 +356,29 @@ type OrderResponseBody struct {
 type EditOrder struct {
 	OrderID int    `json:"order_id"`
 	Message string `json:"edit_message"`
+}
+
+type Pay struct {
+	FiriModel
+	PaymentID     string `json:"payment_id"`
+	TransactionID string `json:"transaction_id"`
+	BusinessID    string `json:"business_id"`
+	ProductID     string `json:"product_id"`
+	OrderID       string `json:"order_id"`
+	Cost          string `json:"cost"`
+}
+
+type Cart struct {
+	FiriModel
+	UserID    string `json:"user_id"`
+	ProductID string `json:"product_id"`
+	Quantity  int    `json:"quantity"`
+}
+
+type SearchResult struct {
+	ProductMatch  bool                     `json:"product_match"`
+	Product       []ProductResponseObject  `json:"products"`
+	BusinessMatch bool                     `json:"business_match"`
+	Businesses    []BusinessResponseObject `json:"business_array"`
+	NoMatch       bool                     `json:"no_match"`
 }

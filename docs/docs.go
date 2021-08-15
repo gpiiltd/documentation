@@ -233,6 +233,196 @@ var doc = `{
                 }
             }
         },
+        "/apicore/business/": {
+            "post": {
+                "description": "Send user data to the main authentication endpoint.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "APICORE Business"
+                ],
+                "summary": "Endpoint to send user data for registration",
+                "parameters": [
+                    {
+                        "description": "The Business Registration Data",
+                        "name": "BusinessRegistration",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/controller.BusinessRegistration"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success data ",
+                        "schema": {
+                            "$ref": "#/definitions/controller.BusinessProfile"
+                        }
+                    },
+                    "400": {
+                        "description": "API response object",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ResponseObject"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Perform Delete endpoint for Business Registration",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "APICORE Business"
+                ],
+                "summary": "Endpoint to delete a user business information",
+                "parameters": [
+                    {
+                        "description": "The Business Registration Data",
+                        "name": "BusinessProfile",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/controller.BusinessProfile"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success data ",
+                        "schema": {
+                            "$ref": "#/definitions/controller.BusinessProfile"
+                        }
+                    },
+                    "400": {
+                        "description": "API response object",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ResponseObject"
+                        }
+                    }
+                }
+            }
+        },
+        "/apicore/business/all": {
+            "get": {
+                "description": "Get an array of all business and business data",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "APICORE Business"
+                ],
+                "summary": "Endpoint to get all businesses on BARAFIRI",
+                "responses": {
+                    "200": {
+                        "description": "Success data ",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/controller.BusinessResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "API response object",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ResponseObject"
+                        }
+                    }
+                }
+            }
+        },
+        "/apicore/business/update": {
+            "post": {
+                "description": "Perform Update endpoint for Business Registration",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "APICORE Business"
+                ],
+                "summary": "Endpoint to update user business data",
+                "parameters": [
+                    {
+                        "description": "The Business Registration Data",
+                        "name": "BusinessProfile",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/controller.BusinessProfile"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success data ",
+                        "schema": {
+                            "$ref": "#/definitions/controller.BusinessProfile"
+                        }
+                    },
+                    "400": {
+                        "description": "API response object",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ResponseObject"
+                        }
+                    }
+                }
+            }
+        },
+        "/apicore/business/{buid}": {
+            "get": {
+                "description": "Get an array of all business and business data by business unique ids",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "APICORE Business"
+                ],
+                "summary": "Endpoint to get business information by id",
+                "parameters": [
+                    {
+                        "description": "The Business unique id string",
+                        "name": "businessid",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success data ",
+                        "schema": {
+                            "$ref": "#/definitions/controller.BusinessResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "API response object",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ResponseObject"
+                        }
+                    }
+                }
+            }
+        },
         "/apicore/token/reset": {
             "get": {
                 "description": "Pass token in the Authorization header. Verify the token and send a new one with updated credentials",
@@ -389,196 +579,6 @@ var doc = `{
                 }
             }
         },
-        "/business/": {
-            "post": {
-                "description": "Send user data to the main authentication endpoint.",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Business"
-                ],
-                "summary": "Endpoint to send user data for registration",
-                "parameters": [
-                    {
-                        "description": "The Business Registration Data",
-                        "name": "BusinessRegistration",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/controller.BusinessRegistration"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success data ",
-                        "schema": {
-                            "$ref": "#/definitions/controller.BusinessProfile"
-                        }
-                    },
-                    "400": {
-                        "description": "API response object",
-                        "schema": {
-                            "$ref": "#/definitions/controller.ResponseObject"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "description": "Perform Delete endpoint for Business Registration",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Business"
-                ],
-                "summary": "Endpoint to delete a user business information",
-                "parameters": [
-                    {
-                        "description": "The Business Registration Data",
-                        "name": "BusinessProfile",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/controller.BusinessProfile"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success data ",
-                        "schema": {
-                            "$ref": "#/definitions/controller.BusinessProfile"
-                        }
-                    },
-                    "400": {
-                        "description": "API response object",
-                        "schema": {
-                            "$ref": "#/definitions/controller.ResponseObject"
-                        }
-                    }
-                }
-            }
-        },
-        "/business/all": {
-            "get": {
-                "description": "Get an array of all business and business data",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Business"
-                ],
-                "summary": "Endpoint to get all businesses on BARAFIRI",
-                "responses": {
-                    "200": {
-                        "description": "Success data ",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/controller.BusinessResponse"
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "API response object",
-                        "schema": {
-                            "$ref": "#/definitions/controller.ResponseObject"
-                        }
-                    }
-                }
-            }
-        },
-        "/business/update": {
-            "post": {
-                "description": "Perform Update endpoint for Business Registration",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Business"
-                ],
-                "summary": "Endpoint to update user business data",
-                "parameters": [
-                    {
-                        "description": "The Business Registration Data",
-                        "name": "BusinessProfile",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/controller.BusinessProfile"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success data ",
-                        "schema": {
-                            "$ref": "#/definitions/controller.BusinessProfile"
-                        }
-                    },
-                    "400": {
-                        "description": "API response object",
-                        "schema": {
-                            "$ref": "#/definitions/controller.ResponseObject"
-                        }
-                    }
-                }
-            }
-        },
-        "/business/{buid}": {
-            "get": {
-                "description": "Get an array of all business and business data by business unique ids",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Business"
-                ],
-                "summary": "Endpoint to get business information by id",
-                "parameters": [
-                    {
-                        "description": "The Business unique id string",
-                        "name": "businessid",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success data ",
-                        "schema": {
-                            "$ref": "#/definitions/controller.BusinessResponse"
-                        }
-                    },
-                    "400": {
-                        "description": "API response object",
-                        "schema": {
-                            "$ref": "#/definitions/controller.ResponseObject"
-                        }
-                    }
-                }
-            }
-        },
         "/business/{buid}/order/all": {
             "get": {
                 "description": "Get orders for a particular business",
@@ -669,6 +669,178 @@ var doc = `{
                         "description": "Order response body",
                         "schema": {
                             "$ref": "#/definitions/controller.OrderResponseBody"
+                        }
+                    },
+                    "400": {
+                        "description": "API response object",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ResponseObject"
+                        }
+                    }
+                }
+            }
+        },
+        "/cart/add": {
+            "post": {
+                "description": "Add new product information to cart system",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User Cart"
+                ],
+                "summary": "Endpoint to add new product to user cart information",
+                "parameters": [
+                    {
+                        "description": "The product data in the cart, as well as the user information",
+                        "name": "Cart",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/controller.Cart"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success cart data",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/controller.Cart"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "API response object",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ResponseObject"
+                        }
+                    }
+                }
+            }
+        },
+        "/cart/empty": {
+            "delete": {
+                "description": "This is used when a user wants to empty user cart",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User Cart"
+                ],
+                "summary": "Endpoint to remove all product from cart item",
+                "parameters": [
+                    {
+                        "description": "The product data in the cart, as well as the user information",
+                        "name": "Cart",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/controller.Cart"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success data ",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/controller.Cart"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "API response object",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ResponseObject"
+                        }
+                    }
+                }
+            }
+        },
+        "/cart/remove/{productid}": {
+            "delete": {
+                "description": "This is used when a user wants to remove a particular data from cart",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User Cart"
+                ],
+                "summary": "Endpoint to remove product from cart item",
+                "parameters": [
+                    {
+                        "description": "The product data in the cart, as well as the user information",
+                        "name": "Cart",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/controller.Cart"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success data ",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/controller.Cart"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "API response object",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ResponseObject"
+                        }
+                    }
+                }
+            }
+        },
+        "/payments/transaction/pay": {
+            "post": {
+                "description": "Endpoint to create new transaction for businesses.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Public API"
+                ],
+                "summary": "Endpoint to create new transaction for businesses",
+                "parameters": [
+                    {
+                        "description": "The payment data",
+                        "name": "Pay",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/controller.Pay"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success data. Check response body for data",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/controller.ProductResponseObject"
+                            }
                         }
                     },
                     "400": {
@@ -921,6 +1093,151 @@ var doc = `{
                 }
             }
         },
+        "/search/products/category/{text}": {
+            "get": {
+                "description": "Search the system for products match and category match",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Public Search"
+                ],
+                "summary": "Endpoint to search the system database for text matches in products and category",
+                "responses": {
+                    "200": {
+                        "description": "Success search result from the procuts section",
+                        "schema": {
+                            "$ref": "#/definitions/controller.SearchResult"
+                        }
+                    },
+                    "400": {
+                        "description": "API response object",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ResponseObject"
+                        }
+                    }
+                }
+            }
+        },
+        "/search/products/industry/{text}": {
+            "get": {
+                "description": "Search the system for products match and industry match",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Public Search"
+                ],
+                "summary": "Endpoint to search the system database for text matches in products and industry",
+                "responses": {
+                    "200": {
+                        "description": "Success search result from the procuts section",
+                        "schema": {
+                            "$ref": "#/definitions/controller.SearchResult"
+                        }
+                    },
+                    "400": {
+                        "description": "API response object",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ResponseObject"
+                        }
+                    }
+                }
+            }
+        },
+        "/search/products/price/{minprice}/{maxprice}": {
+            "get": {
+                "description": "Search the system for products match and price range match",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Public Search"
+                ],
+                "summary": "Endpoint to search the system database for text matches in products and match in prices",
+                "responses": {
+                    "200": {
+                        "description": "Success search result from the procuts section",
+                        "schema": {
+                            "$ref": "#/definitions/controller.SearchResult"
+                        }
+                    },
+                    "400": {
+                        "description": "API response object",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ResponseObject"
+                        }
+                    }
+                }
+            }
+        },
+        "/search/products/{text}": {
+            "get": {
+                "description": "Search the system for products match",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Public Search"
+                ],
+                "summary": "Endpoint to search the system database for text matches in products",
+                "responses": {
+                    "200": {
+                        "description": "Success search result from the procuts section",
+                        "schema": {
+                            "$ref": "#/definitions/controller.SearchResult"
+                        }
+                    },
+                    "400": {
+                        "description": "API response object",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ResponseObject"
+                        }
+                    }
+                }
+            }
+        },
+        "/search/{text}": {
+            "get": {
+                "description": "Search the system for products and data match",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Public Search"
+                ],
+                "summary": "Endpoint to search the system database for text matches in products and services",
+                "responses": {
+                    "200": {
+                        "description": "Success search result ",
+                        "schema": {
+                            "$ref": "#/definitions/controller.SearchResult"
+                        }
+                    },
+                    "400": {
+                        "description": "API response object",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ResponseObject"
+                        }
+                    }
+                }
+            }
+        },
         "/user/order/": {
             "post": {
                 "description": "Send create order data to order for a new product.",
@@ -937,11 +1254,11 @@ var doc = `{
                 "parameters": [
                     {
                         "description": "The Product order data",
-                        "name": "CreateOrder",
+                        "name": "CreateProductOrder",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/controller.CreateOrder"
+                            "$ref": "#/definitions/controller.CreateProductOrder"
                         }
                     }
                 ],
@@ -1173,6 +1490,9 @@ var doc = `{
                 "updated_at": {
                     "type": "string"
                 },
+                "user_id": {
+                    "type": "string"
+                },
                 "website": {
                     "type": "string"
                 },
@@ -1272,6 +1592,46 @@ var doc = `{
                 }
             }
         },
+        "controller.BusinessResponseObject": {
+            "type": "object",
+            "properties": {
+                "business": {
+                    "$ref": "#/definitions/controller.BusinessProfile"
+                },
+                "products": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/controller.ProductResponseObject"
+                    }
+                }
+            }
+        },
+        "controller.Cart": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "deleted_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "product_id": {
+                    "type": "string"
+                },
+                "quantity": {
+                    "type": "integer"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        },
         "controller.ChangePassword": {
             "type": "object",
             "properties": {
@@ -1324,6 +1684,50 @@ var doc = `{
                 },
                 "user_id": {
                     "type": "integer"
+                }
+            }
+        },
+        "controller.CreateProductOrder": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "custom_address": {
+                    "type": "boolean"
+                },
+                "deleted_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "order_id": {
+                    "type": "string"
+                },
+                "order_status": {
+                    "type": "string"
+                },
+                "payment_id": {
+                    "type": "string"
+                },
+                "products_order_details": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/controller.ProductQuantity"
+                    }
+                },
+                "tracking_number": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "string"
                 }
             }
         },
@@ -1406,6 +1810,41 @@ var doc = `{
                 }
             }
         },
+        "controller.Pay": {
+            "type": "object",
+            "properties": {
+                "business_id": {
+                    "type": "string"
+                },
+                "cost": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "deleted_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "order_id": {
+                    "type": "string"
+                },
+                "payment_id": {
+                    "type": "string"
+                },
+                "product_id": {
+                    "type": "string"
+                },
+                "transaction_id": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
         "controller.ProductDiscount": {
             "type": "object",
             "properties": {
@@ -1452,6 +1891,17 @@ var doc = `{
                 },
                 "updated_at": {
                     "type": "string"
+                }
+            }
+        },
+        "controller.ProductQuantity": {
+            "type": "object",
+            "properties": {
+                "product_id": {
+                    "type": "string"
+                },
+                "quantity": {
+                    "type": "integer"
                 }
             }
         },
@@ -1617,6 +2067,32 @@ var doc = `{
                 },
                 "message": {
                     "type": "string"
+                }
+            }
+        },
+        "controller.SearchResult": {
+            "type": "object",
+            "properties": {
+                "business_array": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/controller.BusinessResponseObject"
+                    }
+                },
+                "business_match": {
+                    "type": "boolean"
+                },
+                "no_match": {
+                    "type": "boolean"
+                },
+                "product_match": {
+                    "type": "boolean"
+                },
+                "products": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/controller.ProductResponseObject"
+                    }
                 }
             }
         },
@@ -1826,7 +2302,7 @@ var SwaggerInfo = swaggerInfo{
 	BasePath:    "/api/v1",
 	Schemes:     []string{},
 	Title:       "Barafiri Backend API documentation",
-	Description: "This is the official data model for BARAFIRI API documentation.",
+	Description: "This is the official data model for BARAFIRI API documentation.\nBarafiri documentation port: 8112\napicore port: 7002\nmailer port: 7006\nsales service: 7003\npublic endpoints: 7005 (This includes CART, PUBLIC API, PUBLIC SEARCH)\nproducts service: 7007",
 }
 
 type s struct{}
