@@ -20,7 +20,8 @@ import (
 // @description apicore port: 7002
 // @description mailer port: 7006
 // @description sales service: 7003
-// @description public endpoints: 7005 (This includes CART, PUBLIC API, PUBLIC SEARCH)
+// @description public endpoints: 7005 (This includes PUBLIC API, PUBLIC SEARCH)
+// @description cart service: 7008
 // @description products service: 7007
 // @termsOfService http://my-gpi.io/terms/
 

@@ -2302,7 +2302,7 @@ var SwaggerInfo = swaggerInfo{
 	BasePath:    "/api/v1",
 	Schemes:     []string{},
 	Title:       "Barafiri Backend API documentation",
-	Description: "This is the official data model for BARAFIRI API documentation.\nBarafiri documentation port: 8112\napicore port: 7002\nmailer port: 7006\nsales service: 7003\npublic endpoints: 7005 (This includes CART, PUBLIC API, PUBLIC SEARCH)\nproducts service: 7007",
+	Description: "This is the official data model for BARAFIRI API documentation.\nBarafiri documentation port: 8112\napicore port: 7002\nmailer port: 7006\nsales service: 7003\npublic endpoints: 7005 (This includes PUBLIC API, PUBLIC SEARCH)\ncart service: 7008\nproducts service: 7007",
 }
 
 type s struct{}

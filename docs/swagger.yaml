@@ -529,7 +529,8 @@ info:
     apicore port: 7002
     mailer port: 7006
     sales service: 7003
-    public endpoints: 7005 (This includes CART, PUBLIC API, PUBLIC SEARCH)
+    public endpoints: 7005 (This includes PUBLIC API, PUBLIC SEARCH)
+    cart service: 7008
     products service: 7007
   license:
     name: Apache 2.0
