@@ -72,33 +72,14 @@ func main() {
 	}
 
 	appPort := os.Getenv("port")
-	// hostAddress := os.Getenv("host_address")
-	// c := controller.NewController()
-
-	// v1 := r.Group("/api/v1")
-	// {
-	// 	// accounts := v1.Group("/authentication")
-	// 	{
-	// 		accounts.POST("", c.Registration)
-	// 		// accounts.GET("", c.ListAccounts)
-	// 		// accounts.POST("", c.AddAccount)
-	// 		// accounts.DELETE(":id", c.DeleteAccount)
-	// 		// accounts.PATCH(":id", c.UpdateAccount)
-	// 		// accounts.POST(":id/images", c.UploadAccountImage)
-	// 	}
-	// 	//...
-	// }
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
-	r.Run(appPort)
+	secured_connection := os.Getenv("secured_connection")
+	if secured_connection == "true" {
+		httpsCertFile := os.Getenv("anchor_cert_file")
+		httpsKeyFile := os.Getenv("anchor_key_file")
+		r.RunTLS(appPort, httpsCertFile, httpsKeyFile)
+	} else {
+		r.Run(appPort)
+	}
 	log.Println("App running on ports" + appPort)
 }
-
-// func auth() gin.HandlerFunc {
-// 	return func(c *gin.Context) {
-// 		if len(c.GetHeader("Authorization")) == 0 {
-// 			httputil.NewError(c, http.StatusUnauthorized, errors.New("Authorization is required Header"))
-// 			c.Abort()
-// 		}
-// 		c.Next()
-// 	}
-// }
